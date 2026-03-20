@@ -69,6 +69,21 @@
       "githubIssue": null
     },
     {
+      "id": "va-product-outline",
+      "title": "VA Product Outline",
+      "description": "Creates complete, OKR-aligned product outlines for VA.gov / VES products. Reads existing docs, asks four targeted questions, and produces a GitHub-ready markdown outline with KPI baselines, OKR mapping, and a MEMORY.md handoff file.",
+      "useCase": "VA PMs need a consistent, OKR-compliant product outline to satisfy OCTO OKR 1.1 — documenting product vision, problem statement, and KPIs for every VES product.",
+      "templates": null,
+      "submitter": "Pete Egan",
+      "status": "done",
+      "type": "ready",
+      "votes": 0,
+      "submittedAt": "2026-03-20",
+      "updatedAt": "2026-03-20",
+      "githubIssue": null,
+      "skillId": "va-product-outline"
+    },
+    {
       "id": "meeting-notes-formatter",
       "title": "Meeting Notes Formatter",
       "description": "Transforms raw meeting transcripts or bullet-point notes into a structured summary with decisions, action items, and owners.",

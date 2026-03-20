@@ -87,5 +87,23 @@
       "updatedAt": "2026-03-20",
       "featured": true
     }
+  ,
+    {
+      "id": "va-product-outline",
+      "name": "VA Product Outline",
+      "description": "Creates complete, OKR-aligned product outlines for VA.gov / VES products. Reads your existing docs, asks four targeted questions, and produces a GitHub-ready markdown outline with KPI baselines, OKR mapping, and a MEMORY.md handoff file.",
+      "version": "1.0.0",
+      "author": "Pete Egan",
+      "authorEmail": "eganpg@gmail.com",
+      "tags": ["va", "product-management", "product-outline", "okr", "documentation", "va.gov"],
+      "category": "Document Processing",
+      "file": "skills/va-product-outline/va-product-outline.skill",
+      "icon": null,
+      "readme": "skills/va-product-outline/README.md",
+      "downloads": 0,
+      "publishedAt": "2026-03-20",
+      "updatedAt": "2026-03-20",
+      "featured": true
+    }
   ]
 }
