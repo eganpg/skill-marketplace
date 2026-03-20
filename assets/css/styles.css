@@ -1,14 +1,16 @@
 /* ============================================================
    Skill Marketplace — Custom CSS
    Supplements Tailwind CDN utilities.
+   Brand: Oddball — #00a187 teal-green, white-dominant, pill buttons
    ============================================================ */
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  --color-brand: #4f46e5;
-  --color-brand-light: #6366f1;
-  --color-sidebar-bg: #1e1b4b;
-  --color-sidebar-text: #e0e7ff;
+  --color-brand: #00a187;
+  --color-brand-dark: #007d68;
+  --color-brand-light: #33b59f;
+  --color-sidebar-bg: #00231e;
+  --color-sidebar-text: #ccf0ec;
   --color-card-bg: #ffffff;
   --color-card-border: #e5e7eb;
   --color-body-bg: #f9fafb;
@@ -24,7 +26,7 @@
     --color-body-bg: #111827;
     --color-text-primary: #f9fafb;
     --color-text-muted: #9ca3af;
-    --color-sidebar-bg: #0f172a;
+    --color-sidebar-bg: #001a16;
   }
 }
 
@@ -71,7 +73,7 @@ aside.sidebar {
 }
 
 .skill-card:hover {
-  box-shadow: 0 4px 24px rgba(79, 70, 229, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 161, 135, 0.14);
   transform: translateY(-2px);
 }
 
@@ -133,6 +135,7 @@ aside.sidebar {
 /* ---------- Category Filter Buttons ---------- */
 .category-btn {
   transition: background-color var(--transition-default), color var(--transition-default);
+  border-radius: 9999px;
 }
 
 .category-btn.active {
@@ -142,7 +145,7 @@ aside.sidebar {
 
 /* ---------- Featured Badge ---------- */
 .badge-featured {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background-color: var(--color-brand);
   color: #ffffff;
 }
 
@@ -181,8 +184,8 @@ aside.sidebar {
 }
 
 .prose pre {
-  background: #1e1b4b;
-  color: #e0e7ff;
+  background: #00231e;
+  color: #ccf0ec;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -192,8 +195,8 @@ aside.sidebar {
 }
 
 .prose code {
-  background: rgba(79, 70, 229, 0.08);
-  color: var(--color-brand);
+  background: rgba(0, 161, 135, 0.1);
+  color: var(--color-brand-dark);
   padding: 0.15em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;
@@ -223,7 +226,7 @@ aside.sidebar {
 }
 
 .prose th {
-  background: rgba(79, 70, 229, 0.08);
+  background: rgba(0, 161, 135, 0.08);
   font-weight: 600;
   text-align: left;
   padding: 0.5em 0.75em;
@@ -241,13 +244,13 @@ aside.sidebar {
 }
 
 .prose a:hover {
-  color: var(--color-brand-light);
+  color: var(--color-brand-dark);
 }
 
 /* ---------- Download / Install Panel ---------- */
 .install-panel {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.06), rgba(124, 58, 237, 0.06));
-  border: 1px solid rgba(79, 70, 229, 0.2);
+  background: linear-gradient(135deg, rgba(0, 161, 135, 0.06), rgba(0, 125, 104, 0.04));
+  border: 1px solid rgba(0, 161, 135, 0.25);
   border-radius: 0.75rem;
   padding: 1.5rem;
 }

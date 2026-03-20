@@ -12,7 +12,7 @@
     'Data & Spreadsheets': 'bg-emerald-100 text-emerald-800',
     'Communication & Drafting': 'bg-sky-100 text-sky-800',
     'Research & Summarization': 'bg-violet-100 text-violet-800',
-    'Code & Development': 'bg-indigo-100 text-indigo-800',
+    'Code & Development': 'bg-teal-100 text-teal-800',
     'Scheduling & Automation': 'bg-orange-100 text-orange-800',
     'Presentations': 'bg-pink-100 text-pink-800',
     'Other': 'bg-gray-100 text-gray-700',
@@ -45,7 +45,7 @@
           <p class="text-gray-500 dark:text-gray-400 mb-6">
             No skill with ID <code class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded text-sm">${escapeHtml(id || '')}</code> exists in the marketplace.
           </p>
-          <a href="index.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium transition-colors">
+          <a href="index.html" class="bg-[#00a187] hover:bg-[#007d68] text-white px-5 py-2.5 rounded-full font-medium transition-colors">
             Back to Marketplace
           </a>
         </div>`;

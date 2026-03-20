@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
   <!-- Icon: stacked skill blocks -->
-  <rect x="2" y="10" width="16" height="8" rx="2" fill="#6366f1"/>
-  <rect x="2" y="21" width="16" height="8" rx="2" fill="#4f46e5"/>
-  <rect x="6" y="32" width="8" height="3" rx="1" fill="#818cf8"/>
+  <rect x="2" y="10" width="16" height="8" rx="2" fill="#00a187"/>
+  <rect x="2" y="21" width="16" height="8" rx="2" fill="#007d68"/>
+  <rect x="6" y="32" width="8" height="3" rx="1" fill="#33b59f"/>
   <!-- Wordmark -->
   <text x="26" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="-0.3">Skill Marketplace</text>
 </svg>

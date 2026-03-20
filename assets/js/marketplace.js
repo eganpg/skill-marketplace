@@ -59,7 +59,7 @@
       'Data & Spreadsheets': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
       'Communication & Drafting': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
       'Research & Summarization': 'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
-      'Code & Development': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+      'Code & Development': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
       'Scheduling & Automation': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
       'Presentations': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
       'Other': 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
@@ -88,7 +88,7 @@
       .join('');
     const icon = skill.icon
       ? `<img src="${escapeHtml(skill.icon)}" alt="${escapeHtml(skill.name)} icon" class="w-12 h-12 rounded-xl object-cover" />`
-      : `<div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-2xl" aria-hidden="true">${defaultIconSvg(skill.category)}</div>`;
+      : `<div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900 flex items-center justify-center text-2xl" aria-hidden="true">${defaultIconSvg(skill.category)}</div>`;
 
     return `
       <article class="skill-card rounded-xl p-6 flex flex-col gap-4" data-skill-id="${escapeHtml(skill.id)}">
@@ -97,7 +97,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
               <h3 class="font-semibold text-base leading-tight">
-                <a href="skill.html?id=${escapeHtml(skill.id)}" class="hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none focus-visible:underline">
+                <a href="skill.html?id=${escapeHtml(skill.id)}" class="hover:text-[#00a187] dark:hover:text-teal-400 focus:outline-none focus-visible:underline">
                   ${escapeHtml(skill.name)}
                 </a>
               </h3>
@@ -115,7 +115,7 @@
             <span>v${escapeHtml(skill.version)}</span>
           </div>
           <a href="skill.html?id=${escapeHtml(skill.id)}"
-             class="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+             class="text-sm bg-[#00a187] hover:bg-[#007d68] text-white px-3 py-1.5 rounded-full font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
              aria-label="View and download ${escapeHtml(skill.name)}">
             View &amp; Download
           </a>
@@ -145,7 +145,7 @@
           <div class="text-5xl mb-4" aria-hidden="true">🔍</div>
           <h3 class="text-lg font-semibold mb-2">No skills found</h3>
           <p class="text-sm">Try adjusting your search or clearing the category filter.</p>
-          <button onclick="Marketplace.clearFilters()" class="mt-4 text-indigo-600 dark:text-indigo-400 text-sm underline hover:no-underline">
+          <button onclick="Marketplace.clearFilters()" class="mt-4 text-[#00a187] dark:text-teal-400 text-sm underline hover:no-underline">
             Clear filters
           </button>
         </div>`;
