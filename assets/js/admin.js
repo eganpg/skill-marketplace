@@ -161,8 +161,8 @@
           <p class="font-semibold mb-1">📋 Review issue opened — next steps</p>
           <p class="mb-2">Edit <code class="bg-violet-100 px-1 rounded">roadmap/roadmap.json</code> for item <code class="bg-violet-100 px-1 rounded">${escapeHtml(item.id)}</code>:</p>
           <ol class="list-decimal list-inside space-y-1 text-violet-800">
-            <li>Set <code class="bg-violet-100 px-1 rounded">"status"</code> to <code class="bg-violet-100 px-1 rounded">"building"</code></li>
             <li>Set <code class="bg-violet-100 px-1 rounded">"githubIssue"</code> to the URL of the issue you just created</li>
+            <li>Once QA passes and the PR merges, set <code class="bg-violet-100 px-1 rounded">"status"</code> to <code class="bg-violet-100 px-1 rounded">"done"</code> and add <code class="bg-violet-100 px-1 rounded">"skillId"</code></li>
           </ol>
         </div>
 

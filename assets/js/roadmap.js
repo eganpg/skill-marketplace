@@ -73,55 +73,22 @@
 
   // ---------- Submit form ----------
 
-  function closePanel() {
-    const panel = document.getElementById('submit-panel');
-    const toggleBtn = document.getElementById('submit-toggle-btn');
-    panel?.classList.add('hidden');
-    if (toggleBtn) toggleBtn.textContent = '+ Add a Skill';
-    document.querySelectorAll('#submit-panel input, #submit-panel textarea, #submit-panel select').forEach(el => el.value = '');
-    document.getElementById('form-error')?.classList.add('hidden');
-  }
-
-  function switchTab(active) {
-    const ideaTab = document.getElementById('tab-idea');
-    const readyTab = document.getElementById('tab-ready');
-    const ideaPane = document.getElementById('idea-pane');
-    const readyPane = document.getElementById('ready-pane');
-
-    const activeClasses = ['bg-[#00a187]', 'text-white'];
-    const inactiveClasses = ['text-gray-500', 'hover:text-gray-700'];
-
-    if (active === 'idea') {
-      ideaTab?.classList.add(...activeClasses);
-      ideaTab?.classList.remove(...inactiveClasses);
-      readyTab?.classList.remove(...activeClasses);
-      readyTab?.classList.add(...inactiveClasses);
-      ideaPane?.classList.remove('hidden');
-      readyPane?.classList.add('hidden');
-      ideaTab?.setAttribute('aria-selected', 'true');
-      readyTab?.setAttribute('aria-selected', 'false');
-    } else {
-      readyTab?.classList.add(...activeClasses);
-      readyTab?.classList.remove(...inactiveClasses);
-      ideaTab?.classList.remove(...activeClasses);
-      ideaTab?.classList.add(...inactiveClasses);
-      readyPane?.classList.remove('hidden');
-      ideaPane?.classList.add('hidden');
-      readyTab?.setAttribute('aria-selected', 'true');
-      ideaTab?.setAttribute('aria-selected', 'false');
-    }
-  }
-
   function initSubmitForm() {
     const toggleBtn = document.getElementById('submit-toggle-btn');
     const panel = document.getElementById('submit-panel');
+
+    function closePanel() {
+      panel?.classList.add('hidden');
+      if (toggleBtn) toggleBtn.textContent = '+ Submit an Idea';
+      panel?.querySelectorAll('input, textarea').forEach(el => el.value = '');
+      document.getElementById('form-error')?.classList.add('hidden');
+    }
 
     toggleBtn?.addEventListener('click', () => {
       const isHidden = panel.classList.contains('hidden');
       if (isHidden) {
         panel.classList.remove('hidden');
         toggleBtn.textContent = '− Cancel';
-        switchTab('idea');
         panel.querySelector('input, textarea')?.focus();
       } else {
         closePanel();
@@ -129,12 +96,7 @@
     });
 
     document.getElementById('panel-cancel')?.addEventListener('click', closePanel);
-    document.getElementById('ready-cancel')?.addEventListener('click', closePanel);
 
-    document.getElementById('tab-idea')?.addEventListener('click', () => switchTab('idea'));
-    document.getElementById('tab-ready')?.addEventListener('click', () => switchTab('ready'));
-
-    // Idea form submit
     document.getElementById('idea-submit-btn')?.addEventListener('click', () => {
       const title = document.getElementById('idea-title')?.value.trim();
       const description = document.getElementById('idea-description')?.value.trim();
@@ -173,52 +135,10 @@
       window.open(url, '_blank', 'noopener,noreferrer');
     });
 
-    // Ready skill form submit
-    document.getElementById('ready-submit-btn')?.addEventListener('click', () => {
-      const title = document.getElementById('ready-title')?.value.trim();
-      const submitter = document.getElementById('ready-submitter')?.value.trim();
-      const category = document.getElementById('ready-category')?.value.trim();
-      const description = document.getElementById('ready-description')?.value.trim();
-      const tags = document.getElementById('ready-tags')?.value.trim();
-      const docs = document.getElementById('ready-docs')?.value.trim();
-
-      if (!title || !submitter || !category || !description) {
-        document.getElementById('form-error')?.classList.remove('hidden');
-        return;
-      }
-      document.getElementById('form-error')?.classList.add('hidden');
-
-      const issueTitle = `[SKILL READY] ${title}`;
-      const body = [
-        '## Skill Submission — Ready to Publish',
-        '',
-        `**Skill Name:** ${title}`,
-        `**Submitted by:** ${submitter}`,
-        `**Category:** ${category}`,
-        tags ? `**Tags:** ${tags}` : '',
-        '',
-        '### Description',
-        description,
-        '',
-        '### Documentation / README',
-        docs || '_None provided_',
-        '',
-        '### Next Steps',
-        '- [ ] Attach the `.skill` file to this issue',
-        '- [ ] Admin review and QA',
-        '- [ ] Add to roadmap.json with status: approved, type: ready',
-        '- [ ] Open PR to add to marketplace',
-      ].filter(Boolean).join('\n');
-
-      const url = `https://github.com/${window.SkillUtils.REPO_SLUG}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(body)}&labels=skill-ready`;
-      window.open(url, '_blank', 'noopener,noreferrer');
-    });
-
     // Character counts
     [
       ['idea-description', 'idea-desc-count', 200],
       ['idea-usecase', 'idea-usecase-count', 300],
-      ['ready-description', 'ready-desc-count', 200],
     ].forEach(([fieldId, countId, max]) => {
       const field = document.getElementById(fieldId);
       const counter = document.getElementById(countId);
