@@ -43,81 +43,161 @@
         <h1 class="text-3xl font-bold mb-2">Skill Roadmap</h1>
         <p class="text-gray-500 text-lg">Skills being built, coming up next, and ideas from the team.</p>
       </div>
-      <button id="submit-idea-btn"
+      <button id="submit-toggle-btn"
         class="shrink-0 bg-[#00a187] hover:bg-[#007d68] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-        + Submit an Idea
+        + Add a Skill
       </button>
     </div>
 
-    <!-- ===================== SUBMIT IDEA FORM ===================== -->
-    <div id="idea-form" class="hidden bg-white border border-gray-200 rounded-2xl p-6 mb-10 shadow-sm">
-      <h2 class="text-xl font-bold mb-1">Submit a Skill Idea</h2>
-      <p class="text-gray-500 text-sm mb-6">Tell us what you need. Ideas are reviewed and added to the roadmap.</p>
+    <!-- ===================== SUBMIT FORM PANEL ===================== -->
+    <div id="submit-panel" class="hidden bg-white border border-gray-200 rounded-2xl p-6 mb-10 shadow-sm">
 
-      <div id="idea-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3 mb-5">
+      <!-- Tab toggle -->
+      <div class="flex gap-2 mb-6 border-b border-gray-100 pb-4">
+        <button id="tab-idea"
+          class="tab-btn px-4 py-2 rounded-full text-sm font-semibold bg-[#00a187] text-white transition-colors"
+          aria-selected="true">
+          💡 I have an idea
+        </button>
+        <button id="tab-ready"
+          class="tab-btn px-4 py-2 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors"
+          aria-selected="false">
+          📦 I have a skill ready
+        </button>
+      </div>
+
+      <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3 mb-5">
         Please fill in all required fields before submitting.
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-        <div>
-          <label for="idea-title" class="block text-sm font-medium mb-1.5">
-            Skill name <span class="text-red-500" aria-label="required">*</span>
-          </label>
-          <input type="text" id="idea-title" placeholder="e.g. Email Thread Summarizer"
-            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+      <!-- ===== IDEA FORM ===== -->
+      <div id="idea-pane">
+        <p class="text-gray-500 text-sm mb-5">Tell us what you need. Ideas are reviewed, prioritised, and built by the team.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="idea-title" class="block text-sm font-medium mb-1.5">Skill name <span class="text-red-500">*</span></label>
+            <input type="text" id="idea-title" placeholder="e.g. Email Thread Summarizer"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+          </div>
+          <div>
+            <label for="idea-submitter" class="block text-sm font-medium mb-1.5">Your name <span class="text-red-500">*</span></label>
+            <input type="text" id="idea-submitter" placeholder="e.g. Jane Smith"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+          </div>
         </div>
-        <div>
-          <label for="idea-submitter" class="block text-sm font-medium mb-1.5">
-            Your name <span class="text-red-500" aria-label="required">*</span>
-          </label>
-          <input type="text" id="idea-submitter" placeholder="e.g. Jane Smith"
-            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+
+        <div class="mb-5">
+          <label for="idea-description" class="block text-sm font-medium mb-1.5">What should this skill do? <span class="text-red-500">*</span></label>
+          <textarea id="idea-description" rows="2" maxlength="200"
+            placeholder="A 1–2 sentence description of what the skill does."
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none"></textarea>
+          <p class="text-xs text-gray-400 mt-1 text-right"><span id="idea-desc-count">0/200</span></p>
+        </div>
+
+        <div class="mb-5">
+          <label for="idea-usecase" class="block text-sm font-medium mb-1.5">Why do you need it? <span class="text-red-500">*</span></label>
+          <textarea id="idea-usecase" rows="3" maxlength="300"
+            placeholder="Describe the specific task or workflow this would help with. The more detail, the better the skill will be."
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none"></textarea>
+          <p class="text-xs text-gray-400 mt-1 text-right"><span id="idea-usecase-count">0/300</span></p>
+        </div>
+
+        <div class="mb-6">
+          <label for="idea-templates" class="block text-sm font-medium mb-1.5">Templates or documentation <span class="text-gray-400 font-normal">(optional)</span></label>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-3 text-sm text-amber-800">
+            <strong>Copy and paste only</strong> — paste any relevant templates, format examples, or documentation directly into the box below. File uploads aren't supported yet.
+          </div>
+          <textarea id="idea-templates" rows="4"
+            placeholder="Paste templates, format examples, or any documentation here…"
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none font-mono"></textarea>
+        </div>
+
+        <div class="flex items-center gap-3 flex-wrap">
+          <button id="idea-submit-btn"
+            class="inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            Open GitHub Issue
+          </button>
+          <button id="panel-cancel" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</button>
+          <p class="text-xs text-gray-400 ml-auto">An admin will review and add it to the roadmap.</p>
         </div>
       </div>
 
-      <div class="mb-5">
-        <label for="idea-description" class="block text-sm font-medium mb-1.5">
-          What should this skill do? <span class="text-red-500" aria-label="required">*</span>
-        </label>
-        <textarea id="idea-description" rows="2" maxlength="200"
-          placeholder="A 1–2 sentence description of what the skill does."
-          class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none"></textarea>
-        <p class="text-xs text-gray-400 mt-1 text-right"><span id="idea-desc-count">0/200</span></p>
-      </div>
+      <!-- ===== READY SKILL FORM ===== -->
+      <div id="ready-pane" class="hidden">
+        <p class="text-gray-500 text-sm mb-5">Submit a skill you've already built. It will go through a quick review before appearing in the marketplace.</p>
 
-      <div class="mb-5">
-        <label for="idea-usecase" class="block text-sm font-medium mb-1.5">
-          Why do you need it? <span class="text-red-500" aria-label="required">*</span>
-        </label>
-        <textarea id="idea-usecase" rows="3" maxlength="300"
-          placeholder="Describe the specific task or workflow this would help with. The more detail, the better the skill will be."
-          class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none"></textarea>
-        <p class="text-xs text-gray-400 mt-1 text-right"><span id="idea-usecase-count">0/300</span></p>
-      </div>
-
-      <div class="mb-6">
-        <label for="idea-templates" class="block text-sm font-medium mb-1.5">
-          Templates or documentation <span class="text-gray-400 font-normal">(optional)</span>
-        </label>
-        <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-3 text-sm text-amber-800">
-          <strong>Copy and paste only</strong> — paste any relevant templates, format examples, or documentation directly into the box below. File uploads aren't supported yet.
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="ready-title" class="block text-sm font-medium mb-1.5">Skill name <span class="text-red-500">*</span></label>
+            <input type="text" id="ready-title" placeholder="e.g. PR Review Assistant"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+          </div>
+          <div>
+            <label for="ready-submitter" class="block text-sm font-medium mb-1.5">Your name <span class="text-red-500">*</span></label>
+            <input type="text" id="ready-submitter" placeholder="e.g. Jane Smith"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+          </div>
         </div>
-        <textarea id="idea-templates" rows="4"
-          placeholder="Paste templates, format examples, or any documentation here…"
-          class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none font-mono"></textarea>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="ready-category" class="block text-sm font-medium mb-1.5">Category <span class="text-red-500">*</span></label>
+            <select id="ready-category"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+              <option value="">Select a category…</option>
+              <option>Document Processing</option>
+              <option>Data &amp; Spreadsheets</option>
+              <option>Communication &amp; Drafting</option>
+              <option>Research &amp; Summarization</option>
+              <option>Code &amp; Development</option>
+              <option>Scheduling &amp; Automation</option>
+              <option>Presentations</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="ready-tags" class="block text-sm font-medium mb-1.5">Tags</label>
+            <input type="text" id="ready-tags" placeholder="e.g. meetings, notes, productivity"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400" />
+            <p class="text-xs text-gray-400 mt-1">Comma-separated</p>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label for="ready-description" class="block text-sm font-medium mb-1.5">What does it do? <span class="text-red-500">*</span></label>
+          <textarea id="ready-description" rows="2" maxlength="200"
+            placeholder="A 1–2 sentence description shown on the marketplace card."
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none"></textarea>
+          <p class="text-xs text-gray-400 mt-1 text-right"><span id="ready-desc-count">0/200</span></p>
+        </div>
+
+        <div class="mb-6">
+          <label for="ready-docs" class="block text-sm font-medium mb-1.5">Documentation / README <span class="text-gray-400 font-normal">(optional but recommended)</span></label>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-3 text-sm text-amber-800">
+            <strong>Copy and paste only</strong> — paste your README or any usage notes below. Attach the <code class="bg-amber-100 px-1 rounded">.skill</code> file directly to the GitHub Issue after it opens.
+          </div>
+          <textarea id="ready-docs" rows="4"
+            placeholder="Paste your README, usage instructions, or example prompts here…"
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 resize-none font-mono"></textarea>
+        </div>
+
+        <div class="flex items-center gap-3 flex-wrap">
+          <button id="ready-submit-btn"
+            class="inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            Open GitHub Issue
+          </button>
+          <button id="ready-cancel" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</button>
+          <p class="text-xs text-gray-400 ml-auto">Attach your <code class="bg-gray-100 px-1 rounded text-xs">.skill</code> file to the issue after it opens.</p>
+        </div>
       </div>
 
-      <div class="flex items-center gap-3">
-        <button id="idea-submit-btn"
-          class="inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-          Open GitHub Issue
-        </button>
-        <button id="idea-cancel" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</button>
-        <p class="text-xs text-gray-400 ml-auto">A GitHub Issue will open — an admin will review and add it to the roadmap.</p>
-      </div>
     </div>
 
     <!-- ===================== KANBAN BOARD ===================== -->

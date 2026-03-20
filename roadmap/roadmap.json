@@ -55,6 +55,20 @@
       "githubIssue": null
     },
     {
+      "id": "pr-review-assistant",
+      "title": "PR Review Assistant",
+      "description": "Paste a pull request diff and get back a structured code review: summary of changes, potential issues, suggested improvements, and a go/no-go recommendation.",
+      "useCase": "I spend 30+ minutes on every PR review trying to write thorough feedback. I want a skill that helps me structure and speed that up.",
+      "templates": "# PR Review Assistant\n\nPaste your diff below. The skill will output:\n- Summary of changes\n- Potential issues (bugs, security, perf)\n- Suggested improvements\n- Overall recommendation",
+      "submitter": "Jordan P.",
+      "status": "approved",
+      "type": "ready",
+      "votes": 11,
+      "submittedAt": "2026-03-15",
+      "updatedAt": "2026-03-20",
+      "githubIssue": null
+    },
+    {
       "id": "meeting-notes-formatter",
       "title": "Meeting Notes Formatter",
       "description": "Transforms raw meeting transcripts or bullet-point notes into a structured summary with decisions, action items, and owners.",

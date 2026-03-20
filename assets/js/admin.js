@@ -73,6 +73,38 @@
     return url;
   }
 
+  function buildReviewIssueUrl(item) {
+    const title = `[SKILL REVIEW] ${item.title}`;
+    const body = [
+      '## Skill Review Request',
+      '',
+      `**Skill Name:** ${item.title}`,
+      `**Submitted by:** ${item.submitter}`,
+      `**Roadmap ID:** ${item.id}`,
+      '',
+      '### Description',
+      item.description,
+      '',
+      '### Documentation provided',
+      item.templates || '_None provided_',
+      '',
+      '---',
+      '',
+      '## Review Checklist',
+      '',
+      '- [ ] Download and test the `.skill` file attached to this issue',
+      '- [ ] Verify `SKILL.md` is present and well-formed',
+      '- [ ] Verify `manifest.json` entry is complete',
+      '- [ ] QA the skill output against the description',
+      '',
+      '### After review',
+      '- [ ] Open a PR to add the skill to the marketplace',
+      `- [ ] Update roadmap.json: set status to "done" and add skillId for item id: ${item.id}`,
+    ].join('\n');
+
+    return `https://github.com/${window.SkillUtils.REPO_SLUG}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=skill-ready,admin`;
+  }
+
   function renderAdminCard(item) {
     const cfg = STATUS_CONFIG[item.status] || STATUS_CONFIG.idea;
     const hasIssue = !!item.githubIssue;
@@ -91,10 +123,15 @@
             <button class="approve-btn shrink-0 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
               ✅ Approve
             </button>` : ''}
-          ${item.status === 'approved' ? `
+          ${item.status === 'approved' && item.type !== 'ready' ? `
             <a href="${buildAgentIssueUrl(item)}" target="_blank" rel="noopener noreferrer"
                class="start-building-btn shrink-0 inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
               🤖 Start Building
+            </a>` : ''}
+          ${item.status === 'approved' && item.type === 'ready' ? `
+            <a href="${buildReviewIssueUrl(item)}" target="_blank" rel="noopener noreferrer"
+               class="review-publish-btn shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+              🔍 Review &amp; Publish
             </a>` : ''}
           ${item.status === 'done' && item.skillId ? `
             <a href="skill.html?id=${escapeHtml(item.skillId)}"
@@ -117,6 +154,15 @@
           <ol class="list-decimal list-inside space-y-1 text-amber-800">
             <li>Set <code class="bg-amber-100 px-1 rounded">"status"</code> to <code class="bg-amber-100 px-1 rounded">"building"</code></li>
             <li>Set <code class="bg-amber-100 px-1 rounded">"githubIssue"</code> to the URL of the issue you just created</li>
+          </ol>
+        </div>
+
+        <div class="review-reminder hidden bg-violet-50 border border-violet-300 rounded-lg px-4 py-3 text-sm text-violet-900" role="alert">
+          <p class="font-semibold mb-1">📋 Review issue opened — next steps</p>
+          <p class="mb-2">Edit <code class="bg-violet-100 px-1 rounded">roadmap/roadmap.json</code> for item <code class="bg-violet-100 px-1 rounded">${escapeHtml(item.id)}</code>:</p>
+          <ol class="list-decimal list-inside space-y-1 text-violet-800">
+            <li>Set <code class="bg-violet-100 px-1 rounded">"status"</code> to <code class="bg-violet-100 px-1 rounded">"building"</code></li>
+            <li>Set <code class="bg-violet-100 px-1 rounded">"githubIssue"</code> to the URL of the issue you just created</li>
           </ol>
         </div>
 
@@ -195,6 +241,15 @@
         const card = btn.closest('article');
         card?.querySelector('.build-reminder')?.classList.remove('hidden');
         card?.querySelector('.build-reminder')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    // Show review reminder when "Review & Publish" is clicked
+    container.querySelectorAll('.review-publish-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('article');
+        card?.querySelector('.review-reminder')?.classList.remove('hidden');
+        card?.querySelector('.review-reminder')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     });
   }

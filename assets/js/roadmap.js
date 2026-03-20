@@ -35,6 +35,9 @@
     const doneLink = item.skillId
       ? `<a href="skill.html?id=${escapeHtml(item.skillId)}" class="text-xs text-[#00a187] hover:underline font-medium">View in marketplace →</a>`
       : '';
+    const readyBadge = item.type === 'ready'
+      ? `<span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 border border-violet-200">📦 Skill ready</span>`
+      : '';
 
     return `
       <article class="skill-card rounded-xl p-5 flex flex-col gap-3" data-id="${escapeHtml(item.id)}">
@@ -42,6 +45,7 @@
           <h3 class="font-semibold text-sm leading-snug">${escapeHtml(item.title)}</h3>
           ${statusBadge(item.status)}
         </div>
+        ${readyBadge ? `<div>${readyBadge}</div>` : ''}
         <p class="text-xs text-gray-500 leading-relaxed line-clamp-2">${escapeHtml(item.description)}</p>
         <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100 text-xs text-gray-400">
           <span>by ${escapeHtml(item.submitter)} · ${date}</span>
@@ -69,25 +73,68 @@
 
   // ---------- Submit form ----------
 
+  function closePanel() {
+    const panel = document.getElementById('submit-panel');
+    const toggleBtn = document.getElementById('submit-toggle-btn');
+    panel?.classList.add('hidden');
+    if (toggleBtn) toggleBtn.textContent = '+ Add a Skill';
+    document.querySelectorAll('#submit-panel input, #submit-panel textarea, #submit-panel select').forEach(el => el.value = '');
+    document.getElementById('form-error')?.classList.add('hidden');
+  }
+
+  function switchTab(active) {
+    const ideaTab = document.getElementById('tab-idea');
+    const readyTab = document.getElementById('tab-ready');
+    const ideaPane = document.getElementById('idea-pane');
+    const readyPane = document.getElementById('ready-pane');
+
+    const activeClasses = ['bg-[#00a187]', 'text-white'];
+    const inactiveClasses = ['text-gray-500', 'hover:text-gray-700'];
+
+    if (active === 'idea') {
+      ideaTab?.classList.add(...activeClasses);
+      ideaTab?.classList.remove(...inactiveClasses);
+      readyTab?.classList.remove(...activeClasses);
+      readyTab?.classList.add(...inactiveClasses);
+      ideaPane?.classList.remove('hidden');
+      readyPane?.classList.add('hidden');
+      ideaTab?.setAttribute('aria-selected', 'true');
+      readyTab?.setAttribute('aria-selected', 'false');
+    } else {
+      readyTab?.classList.add(...activeClasses);
+      readyTab?.classList.remove(...inactiveClasses);
+      ideaTab?.classList.remove(...activeClasses);
+      ideaTab?.classList.add(...inactiveClasses);
+      readyPane?.classList.remove('hidden');
+      ideaPane?.classList.add('hidden');
+      readyTab?.setAttribute('aria-selected', 'true');
+      ideaTab?.setAttribute('aria-selected', 'false');
+    }
+  }
+
   function initSubmitForm() {
-    const toggleBtn = document.getElementById('submit-idea-btn');
-    const form = document.getElementById('idea-form');
-    const cancelBtn = document.getElementById('idea-cancel');
+    const toggleBtn = document.getElementById('submit-toggle-btn');
+    const panel = document.getElementById('submit-panel');
 
     toggleBtn?.addEventListener('click', () => {
-      form.classList.toggle('hidden');
-      toggleBtn.textContent = form.classList.contains('hidden') ? '+ Submit an Idea' : '− Cancel';
-      if (!form.classList.contains('hidden')) {
-        form.querySelector('input, textarea')?.focus();
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        panel.classList.remove('hidden');
+        toggleBtn.textContent = '− Cancel';
+        switchTab('idea');
+        panel.querySelector('input, textarea')?.focus();
+      } else {
+        closePanel();
       }
     });
 
-    cancelBtn?.addEventListener('click', () => {
-      form.classList.add('hidden');
-      toggleBtn.textContent = '+ Submit an Idea';
-      form.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
-    });
+    document.getElementById('panel-cancel')?.addEventListener('click', closePanel);
+    document.getElementById('ready-cancel')?.addEventListener('click', closePanel);
 
+    document.getElementById('tab-idea')?.addEventListener('click', () => switchTab('idea'));
+    document.getElementById('tab-ready')?.addEventListener('click', () => switchTab('ready'));
+
+    // Idea form submit
     document.getElementById('idea-submit-btn')?.addEventListener('click', () => {
       const title = document.getElementById('idea-title')?.value.trim();
       const description = document.getElementById('idea-description')?.value.trim();
@@ -96,10 +143,10 @@
       const submitter = document.getElementById('idea-submitter')?.value.trim();
 
       if (!title || !description || !useCase || !submitter) {
-        document.getElementById('idea-error').classList.remove('hidden');
+        document.getElementById('form-error')?.classList.remove('hidden');
         return;
       }
-      document.getElementById('idea-error').classList.add('hidden');
+      document.getElementById('form-error')?.classList.add('hidden');
 
       const issueTitle = `[SKILL IDEA] ${title}`;
       const body = [
@@ -126,8 +173,53 @@
       window.open(url, '_blank', 'noopener,noreferrer');
     });
 
+    // Ready skill form submit
+    document.getElementById('ready-submit-btn')?.addEventListener('click', () => {
+      const title = document.getElementById('ready-title')?.value.trim();
+      const submitter = document.getElementById('ready-submitter')?.value.trim();
+      const category = document.getElementById('ready-category')?.value.trim();
+      const description = document.getElementById('ready-description')?.value.trim();
+      const tags = document.getElementById('ready-tags')?.value.trim();
+      const docs = document.getElementById('ready-docs')?.value.trim();
+
+      if (!title || !submitter || !category || !description) {
+        document.getElementById('form-error')?.classList.remove('hidden');
+        return;
+      }
+      document.getElementById('form-error')?.classList.add('hidden');
+
+      const issueTitle = `[SKILL READY] ${title}`;
+      const body = [
+        '## Skill Submission — Ready to Publish',
+        '',
+        `**Skill Name:** ${title}`,
+        `**Submitted by:** ${submitter}`,
+        `**Category:** ${category}`,
+        tags ? `**Tags:** ${tags}` : '',
+        '',
+        '### Description',
+        description,
+        '',
+        '### Documentation / README',
+        docs || '_None provided_',
+        '',
+        '### Next Steps',
+        '- [ ] Attach the `.skill` file to this issue',
+        '- [ ] Admin review and QA',
+        '- [ ] Add to roadmap.json with status: approved, type: ready',
+        '- [ ] Open PR to add to marketplace',
+      ].filter(Boolean).join('\n');
+
+      const url = `https://github.com/${window.SkillUtils.REPO_SLUG}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(body)}&labels=skill-ready`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
     // Character counts
-    [['idea-description', 'idea-desc-count', 200], ['idea-usecase', 'idea-usecase-count', 300]].forEach(([fieldId, countId, max]) => {
+    [
+      ['idea-description', 'idea-desc-count', 200],
+      ['idea-usecase', 'idea-usecase-count', 300],
+      ['ready-description', 'ready-desc-count', 200],
+    ].forEach(([fieldId, countId, max]) => {
       const field = document.getElementById(fieldId);
       const counter = document.getElementById(countId);
       if (field && counter) {
