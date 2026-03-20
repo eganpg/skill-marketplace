@@ -11,7 +11,7 @@
     done:     { label: 'Done',     emoji: '🚀', color: 'bg-teal-50 text-teal-700',     border: 'border-teal-200'  },
   };
 
-  const STATUS_ORDER = ['building', 'approved', 'idea', 'done'];
+  const STATUS_ORDER = ['idea', 'approved', 'building', 'done'];
 
   let allItems = [];
 
