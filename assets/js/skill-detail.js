@@ -42,8 +42,8 @@
         <div class="flex flex-col items-center justify-center py-24 text-center">
           <div class="text-6xl mb-6" aria-hidden="true">🔍</div>
           <h1 class="text-2xl font-bold mb-3">Skill not found</h1>
-          <p class="text-gray-500 dark:text-gray-400 mb-6">
-            No skill with ID <code class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded text-sm">${escapeHtml(id || '')}</code> exists in the marketplace.
+          <p class="text-gray-500 mb-6">
+            No skill with ID <code class="bg-gray-100 px-2 py-0.5 rounded text-sm">${escapeHtml(id || '')}</code> exists in the marketplace.
           </p>
           <a href="index.html" class="bg-[#00a187] hover:bg-[#007d68] text-white px-5 py-2.5 rounded-full font-medium transition-colors">
             Back to Marketplace
@@ -86,12 +86,12 @@
     if (metaEl) {
       metaEl.innerHTML = `
         <span>by <strong>${escapeHtml(skill.author)}</strong></span>
-        <span class="text-gray-300 dark:text-gray-600" aria-hidden="true">·</span>
+        <span class="text-gray-300" aria-hidden="true">·</span>
         <span>v${escapeHtml(skill.version)}</span>
-        <span class="text-gray-300 dark:text-gray-600" aria-hidden="true">·</span>
+        <span class="text-gray-300" aria-hidden="true">·</span>
         <span>Published ${formatDate(skill.publishedAt)}</span>
         ${skill.updatedAt && skill.updatedAt !== skill.publishedAt
-          ? `<span class="text-gray-300 dark:text-gray-600" aria-hidden="true">·</span><span>Updated ${formatDate(skill.updatedAt)}</span>`
+          ? `<span class="text-gray-300" aria-hidden="true">·</span><span>Updated ${formatDate(skill.updatedAt)}</span>`
           : ''}
       `;
     }
@@ -112,7 +112,7 @@
   async function renderReadme(skill) {
     const container = document.getElementById('readme-content');
     if (!container || !skill.readme) {
-      if (container) container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 italic">No documentation provided for this skill.</p>`;
+      if (container) container.innerHTML = `<p class="text-gray-500 italic">No documentation provided for this skill.</p>`;
       return;
     }
 
@@ -125,7 +125,7 @@
       const html = window.marked ? window.marked.parse(md, { mangle: false, headerIds: false }) : `<pre>${escapeHtml(md)}</pre>`;
       container.innerHTML = html;
     } catch (err) {
-      container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 italic">Documentation could not be loaded.</p>`;
+      container.innerHTML = `<p class="text-gray-500 italic">Documentation could not be loaded.</p>`;
     }
   }
 

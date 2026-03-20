@@ -88,7 +88,7 @@
       .join('');
     const icon = skill.icon
       ? `<img src="${escapeHtml(skill.icon)}" alt="${escapeHtml(skill.name)} icon" class="w-12 h-12 rounded-xl object-cover" />`
-      : `<div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900 flex items-center justify-center text-2xl" aria-hidden="true">${defaultIconSvg(skill.category)}</div>`;
+      : `<div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center text-2xl" aria-hidden="true">${defaultIconSvg(skill.category)}</div>`;
 
     return `
       <article class="skill-card rounded-xl p-6 flex flex-col gap-4" data-skill-id="${escapeHtml(skill.id)}">
@@ -97,7 +97,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
               <h3 class="font-semibold text-base leading-tight">
-                <a href="skill.html?id=${escapeHtml(skill.id)}" class="hover:text-[#00a187] dark:hover:text-teal-400 focus:outline-none focus-visible:underline">
+                <a href="skill.html?id=${escapeHtml(skill.id)}" class="hover:text-[#00a187] focus:outline-none focus-visible:underline">
                   ${escapeHtml(skill.name)}
                 </a>
               </h3>
@@ -108,8 +108,8 @@
         </div>
         <p class="skill-card__description text-sm">${escapeHtml(skill.description)}</p>
         <div class="flex flex-wrap gap-1">${tagHtml}</div>
-        <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100 dark:border-gray-700">
-          <div class="text-xs text-gray-500 dark:text-gray-400">
+        <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
+          <div class="text-xs text-gray-500">
             <span>by ${escapeHtml(skill.author)}</span>
             <span class="mx-1">·</span>
             <span>v${escapeHtml(skill.version)}</span>
@@ -145,7 +145,7 @@
           <div class="text-5xl mb-4" aria-hidden="true">🔍</div>
           <h3 class="text-lg font-semibold mb-2">No skills found</h3>
           <p class="text-sm">Try adjusting your search or clearing the category filter.</p>
-          <button onclick="Marketplace.clearFilters()" class="mt-4 text-[#00a187] dark:text-teal-400 text-sm underline hover:no-underline">
+          <button onclick="Marketplace.clearFilters()" class="mt-4 text-[#00a187] text-sm underline hover:no-underline">
             Clear filters
           </button>
         </div>`;
@@ -236,7 +236,7 @@
           <div class="skeleton h-5 w-14 rounded-full"></div>
           <div class="skeleton h-5 w-14 rounded-full"></div>
         </div>
-        <div class="flex justify-between pt-2 border-t border-gray-100 dark:border-gray-700">
+        <div class="flex justify-between pt-2 border-t border-gray-100">
           <div class="skeleton h-3 w-24"></div>
           <div class="skeleton h-7 w-28 rounded-lg"></div>
         </div>
