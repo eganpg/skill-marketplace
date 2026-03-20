@@ -55,14 +55,14 @@
 
   function categoryBadgeClass(category) {
     const map = {
-      'Document Processing': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
-      'Data & Spreadsheets': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
-      'Communication & Drafting': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
-      'Research & Summarization': 'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
-      'Code & Development': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
-      'Scheduling & Automation': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-      'Presentations': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
-      'Other': 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+      'Document Processing': 'bg-amber-50 text-amber-600',
+      'Data & Spreadsheets': 'bg-emerald-50 text-emerald-600',
+      'Communication & Drafting': 'bg-sky-50 text-sky-600',
+      'Research & Summarization': 'bg-violet-50 text-violet-600',
+      'Code & Development': 'bg-teal-50 text-teal-600',
+      'Scheduling & Automation': 'bg-orange-50 text-orange-500',
+      'Presentations': 'bg-pink-50 text-pink-500',
+      'Other': 'bg-gray-50 text-gray-500',
     };
     return map[category] || map['Other'];
   }
@@ -84,7 +84,7 @@
   function renderSkillCard(skill) {
     const tags = (skill.tags || []).slice(0, 3);
     const tagHtml = tags
-      .map((t) => `<span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full">${escapeHtml(t)}</span>`)
+      .map((t) => `<span class="inline-block bg-gray-50 text-gray-500 text-xs px-2 py-0.5 rounded-full border border-gray-200">${escapeHtml(t)}</span>`)
       .join('');
     const icon = skill.icon
       ? `<img src="${escapeHtml(skill.icon)}" alt="${escapeHtml(skill.name)} icon" class="w-12 h-12 rounded-xl object-cover" />`

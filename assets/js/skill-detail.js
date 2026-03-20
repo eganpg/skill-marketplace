@@ -8,14 +8,14 @@
   const { fetchManifest, escapeHtml, buildGitHubIssueUrl, formatDate } = window.SkillUtils;
 
   const CATEGORY_COLORS = {
-    'Document Processing': 'bg-amber-100 text-amber-800',
-    'Data & Spreadsheets': 'bg-emerald-100 text-emerald-800',
-    'Communication & Drafting': 'bg-sky-100 text-sky-800',
-    'Research & Summarization': 'bg-violet-100 text-violet-800',
-    'Code & Development': 'bg-teal-100 text-teal-800',
-    'Scheduling & Automation': 'bg-orange-100 text-orange-800',
-    'Presentations': 'bg-pink-100 text-pink-800',
-    'Other': 'bg-gray-100 text-gray-700',
+    'Document Processing': 'bg-amber-50 text-amber-600',
+    'Data & Spreadsheets': 'bg-emerald-50 text-emerald-600',
+    'Communication & Drafting': 'bg-sky-50 text-sky-600',
+    'Research & Summarization': 'bg-violet-50 text-violet-600',
+    'Code & Development': 'bg-teal-50 text-teal-600',
+    'Scheduling & Automation': 'bg-orange-50 text-orange-500',
+    'Presentations': 'bg-pink-50 text-pink-500',
+    'Other': 'bg-gray-50 text-gray-500',
   };
 
   const CATEGORY_EMOJI = {
@@ -100,7 +100,7 @@
     const tagsEl = document.getElementById('skill-tags');
     if (tagsEl && skill.tags) {
       tagsEl.innerHTML = skill.tags
-        .map((t) => `<span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm px-3 py-1 rounded-full">${escapeHtml(t)}</span>`)
+        .map((t) => `<span class="inline-block bg-gray-50 text-gray-500 text-sm px-3 py-1 rounded-full border border-gray-200">${escapeHtml(t)}</span>`)
         .join('');
     }
 
