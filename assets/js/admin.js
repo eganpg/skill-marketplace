@@ -75,7 +75,6 @@
 
   function renderAdminCard(item) {
     const cfg = STATUS_CONFIG[item.status] || STATUS_CONFIG.idea;
-    const canBuild = item.status === 'idea' || item.status === 'approved';
     const hasIssue = !!item.githubIssue;
 
     return `
@@ -88,7 +87,11 @@
               <span class="text-xs text-gray-400">submitted by ${escapeHtml(item.submitter)} · ${formatDate(item.submittedAt)}</span>
             </div>
           </div>
-          ${canBuild ? `
+          ${item.status === 'idea' ? `
+            <button class="approve-btn shrink-0 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+              ✅ Approve
+            </button>` : ''}
+          ${item.status === 'approved' ? `
             <a href="${buildAgentIssueUrl(item)}" target="_blank" rel="noopener noreferrer"
                class="start-building-btn shrink-0 inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
               🤖 Start Building
@@ -98,6 +101,14 @@
                class="shrink-0 text-sm text-[#00a187] hover:underline font-medium">
               View in marketplace →
             </a>` : ''}
+        </div>
+
+        <div class="approve-reminder hidden bg-sky-50 border border-sky-300 rounded-lg px-4 py-3 text-sm text-sky-900" role="alert">
+          <p class="font-semibold mb-1">📋 Update the roadmap to reflect approval</p>
+          <p class="mb-2">Edit <code class="bg-sky-100 px-1 rounded">roadmap/roadmap.json</code> for item <code class="bg-sky-100 px-1 rounded">${escapeHtml(item.id)}</code>:</p>
+          <ol class="list-decimal list-inside space-y-1 text-sky-800">
+            <li>Set <code class="bg-sky-100 px-1 rounded">"status"</code> to <code class="bg-sky-100 px-1 rounded">"approved"</code></li>
+          </ol>
         </div>
 
         <div class="build-reminder hidden bg-amber-50 border border-amber-300 rounded-lg px-4 py-3 text-sm text-amber-900" role="alert">
@@ -169,7 +180,16 @@
 
     container.innerHTML = html || '<p class="text-gray-400 italic">No roadmap items found.</p>';
 
-    // Show reminder banner when "Start Building" is clicked
+    // Show approve reminder when "Approve" is clicked
+    container.querySelectorAll('.approve-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('article');
+        card?.querySelector('.approve-reminder')?.classList.remove('hidden');
+        card?.querySelector('.approve-reminder')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    // Show build reminder when "Start Building" is clicked
     container.querySelectorAll('.start-building-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const card = btn.closest('article');
