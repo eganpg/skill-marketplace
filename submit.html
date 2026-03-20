@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Skill — Skill Marketplace</title>
+  <meta name="description" content="Submit a new Claude skill to the internal marketplace." />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: { extend: { colors: { brand: '#4f46e5' } } }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="min-h-screen">
+
+  <!-- ===================== TOP NAV ===================== -->
+  <header class="sidebar px-6 py-4 flex items-center justify-between" role="banner">
+    <a href="index.html" class="block">
+      <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-8 w-auto" />
+    </a>
+    <nav class="flex items-center gap-4" aria-label="Site navigation">
+      <a href="index.html" class="text-indigo-200 hover:text-white text-sm transition-colors">Browse Skills</a>
+    </nav>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="max-w-3xl mx-auto px-6 py-10">
+
+    <!-- Page header -->
+    <div class="mb-10">
+      <nav class="text-sm text-gray-500 dark:text-gray-400 mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Marketplace</a>
+        <span class="mx-2" aria-hidden="true">›</span>
+        <span class="text-gray-900 dark:text-gray-100" aria-current="page">Submit a Skill</span>
+      </nav>
+      <h1 class="text-3xl font-bold mb-3">Submit a Skill</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-lg">Share a Claude skill you've built with the rest of the team. All submissions go through a quick review before publishing.</p>
+    </div>
+
+    <!-- ======================================================
+         PATH A — GitHub PR
+    ======================================================= -->
+    <section class="mb-10" aria-labelledby="path-a-heading">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold text-sm shrink-0">A</span>
+        <h2 id="path-a-heading" class="text-xl font-bold">GitHub Pull Request <span class="text-sm font-normal text-indigo-600 dark:text-indigo-400">(preferred)</span></h2>
+      </div>
+
+      <p class="text-gray-600 dark:text-gray-300 mb-5">Best for developers comfortable with Git. Your skill goes directly into the codebase for review.</p>
+
+      <ol class="space-y-4">
+        <li class="flex gap-4">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold text-sm shrink-0 mt-0.5">1</span>
+          <div>
+            <p class="font-medium mb-1">Fork or branch the marketplace repo</p>
+            <code class="block bg-gray-100 dark:bg-gray-800 text-sm px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300">git checkout -b skill/your-skill-name</code>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold text-sm shrink-0 mt-0.5">2</span>
+          <div>
+            <p class="font-medium mb-1">Add your skill files</p>
+            <code class="block bg-gray-100 dark:bg-gray-800 text-sm px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 whitespace-pre">skills/your-skill-name/
+├── your-skill-name.skill
+└── README.md</code>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold text-sm shrink-0 mt-0.5">3</span>
+          <div>
+            <p class="font-medium mb-1">Add your entry to <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">skills/manifest.json</code></p>
+            <details class="mt-2">
+              <summary class="text-sm text-indigo-600 dark:text-indigo-400 cursor-pointer hover:underline">Show manifest template</summary>
+              <pre class="mt-2 bg-gray-100 dark:bg-gray-800 text-sm px-3 py-3 rounded-lg overflow-x-auto text-gray-700 dark:text-gray-300">{
+  "id": "your-skill-name",
+  "name": "Your Skill Name",
+  "description": "One to two sentence summary.",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "authorEmail": "you@company.com",
+  "tags": ["tag1", "tag2"],
+  "category": "Code &amp; Development",
+  "file": "skills/your-skill-name/your-skill-name.skill",
+  "icon": null,
+  "readme": "skills/your-skill-name/README.md",
+  "downloads": 0,
+  "publishedAt": "2026-03-20",
+  "updatedAt": "2026-03-20",
+  "featured": false
+}</pre>
+            </details>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold text-sm shrink-0 mt-0.5">4</span>
+          <div>
+            <p class="font-medium mb-1">Open a Pull Request</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Title it: <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">[SKILL SUBMISSION] Your Skill Name</code></p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">An admin will review, test the skill, and merge when ready.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="relative my-8">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+      </div>
+      <div class="relative flex justify-center">
+        <span class="bg-white dark:bg-gray-900 px-4 text-sm text-gray-400 font-medium">or</span>
+      </div>
+    </div>
+
+    <!-- ======================================================
+         PATH B — Form submission
+    ======================================================= -->
+    <section class="mb-12" aria-labelledby="path-b-heading">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold text-sm shrink-0">B</span>
+        <h2 id="path-b-heading" class="text-xl font-bold">Form Submission</h2>
+      </div>
+
+      <p class="text-gray-600 dark:text-gray-300 mb-6">Fill out the form below. We'll pre-fill a GitHub Issue for you — just attach your <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm">.skill</code> file to the issue after it opens.</p>
+
+      <!-- Submission checklist -->
+      <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-5 mb-6">
+        <h3 class="font-semibold text-amber-900 dark:text-amber-200 mb-3">Before you submit, confirm all of the following:</h3>
+        <div class="space-y-3">
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="skill-tested" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 shrink-0" />
+            <span class="text-sm text-amber-900 dark:text-amber-200 group-hover:text-amber-800">My skill has been tested in Claude and works as expected</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="skill-file-included" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 shrink-0" />
+            <span class="text-sm text-amber-900 dark:text-amber-200 group-hover:text-amber-800">I have a <code class="bg-amber-100 dark:bg-amber-900/50 px-1 rounded">.skill</code> file ready to attach</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="tags-relevant" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 shrink-0" />
+            <span class="text-sm text-amber-900 dark:text-amber-200 group-hover:text-amber-800">My tags are relevant and specific (not just "claude" or "ai")</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="readme-included" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 shrink-0" />
+            <span class="text-sm text-amber-900 dark:text-amber-200 group-hover:text-amber-800">I've included documentation or a README explaining how to use the skill</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="submission-form" class="space-y-6" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Skill name -->
+          <div>
+            <label for="skill-name" class="block text-sm font-medium mb-1.5">
+              Skill name <span class="text-red-500" aria-label="required">*</span>
+            </label>
+            <input type="text" id="skill-name" name="skill-name" required
+              placeholder="e.g. Meeting Notes Formatter"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" />
+          </div>
+
+          <!-- Author name -->
+          <div>
+            <label for="author-name" class="block text-sm font-medium mb-1.5">
+              Your name <span class="text-red-500" aria-label="required">*</span>
+            </label>
+            <input type="text" id="author-name" name="author-name" required
+              placeholder="e.g. Pete Egan"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" />
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label for="skill-description" class="block text-sm font-medium mb-1.5">
+            Description <span class="text-red-500" aria-label="required">*</span>
+          </label>
+          <textarea id="skill-description" name="skill-description" rows="3" required maxlength="300"
+            placeholder="1–2 sentences describing what this skill does and who it's for."
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 resize-none"></textarea>
+          <p class="text-xs text-gray-400 mt-1 text-right"><span id="desc-count">0/300</span></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Category -->
+          <div>
+            <label for="skill-category" class="block text-sm font-medium mb-1.5">
+              Category <span class="text-red-500" aria-label="required">*</span>
+            </label>
+            <select id="skill-category" name="skill-category" required
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              <option value="">Select a category…</option>
+              <option>Document Processing</option>
+              <option>Data &amp; Spreadsheets</option>
+              <option>Communication &amp; Drafting</option>
+              <option>Research &amp; Summarization</option>
+              <option>Code &amp; Development</option>
+              <option>Scheduling &amp; Automation</option>
+              <option>Presentations</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <!-- Tags -->
+          <div>
+            <label for="skill-tags" class="block text-sm font-medium mb-1.5">Tags</label>
+            <input type="text" id="skill-tags" name="skill-tags"
+              placeholder="e.g. meetings, notes, productivity"
+              class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" />
+            <p class="text-xs text-gray-400 mt-1">Comma-separated</p>
+          </div>
+        </div>
+
+        <!-- Additional notes -->
+        <div>
+          <label for="additional-notes" class="block text-sm font-medium mb-1.5">Notes for reviewers <span class="text-gray-400 font-normal">(optional)</span></label>
+          <textarea id="additional-notes" name="additional-notes" rows="2"
+            placeholder="Anything the admin should know before reviewing?"
+            class="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 resize-none"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+          <button id="open-issue-btn" type="button" disabled
+            class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-3 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 opacity-50 cursor-not-allowed"
+            aria-describedby="submit-instructions">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            Open GitHub Issue
+          </button>
+          <p id="submit-instructions" class="text-sm text-gray-500 dark:text-gray-400">
+            Complete the checklist above to enable submission. After the issue opens, attach your <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-xs">.skill</code> file.
+          </p>
+        </div>
+      </form>
+    </section>
+
+    <!-- ======================================================
+         WHAT HAPPENS NEXT
+    ======================================================= -->
+    <section class="border-t border-gray-100 dark:border-gray-800 pt-8" aria-labelledby="next-steps-heading">
+      <h2 id="next-steps-heading" class="text-lg font-bold mb-4">What happens after you submit?</h2>
+      <div class="space-y-4">
+        <div class="flex gap-4">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-bold text-sm shrink-0">1</div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">An admin reviews your submission — testing the skill and checking the metadata.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-bold text-sm shrink-0">2</div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">They may leave feedback or request small changes via the PR or issue.</p>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-bold text-sm shrink-0">3</div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Once approved and merged, your skill appears in the marketplace automatically.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="px-6 py-6 text-sm text-gray-400 dark:text-gray-600 border-t border-gray-100 dark:border-gray-800 text-center">
+    <a href="index.html" class="text-indigo-600 dark:text-indigo-400 hover:underline">← Back to Marketplace</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/submit.js"></script>
+</body>
+</html>

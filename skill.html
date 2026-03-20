@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill — Skill Marketplace</title>
+  <meta name="description" content="Skill detail page — Skill Marketplace" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: { extend: { colors: { brand: '#4f46e5' } } }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="min-h-screen">
+
+  <!-- ===================== TOP NAV ===================== -->
+  <header class="sidebar px-6 py-4 flex items-center justify-between" role="banner">
+    <a href="index.html" class="block">
+      <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-8 w-auto" />
+    </a>
+    <nav class="flex items-center gap-4" aria-label="Site navigation">
+      <a href="index.html" class="text-indigo-200 hover:text-white text-sm transition-colors">Browse Skills</a>
+      <a href="submit.html" class="bg-white/10 hover:bg-white/20 text-white text-sm px-4 py-2 rounded-lg transition-colors">Submit a Skill</a>
+    </nav>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="max-w-4xl mx-auto px-6 py-10" id="skill-content">
+
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm text-gray-500 dark:text-gray-400" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2">
+        <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Marketplace</a></li>
+        <li aria-hidden="true" class="select-none">›</li>
+        <li class="text-gray-900 dark:text-gray-100 font-medium truncate max-w-xs" id="breadcrumb-skill-name" aria-current="page">Loading…</li>
+      </ol>
+    </nav>
+
+    <!-- Skill hero -->
+    <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
+      <!-- Icon -->
+      <div id="skill-icon"
+        class="w-20 h-20 rounded-2xl bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-4xl shrink-0"
+        aria-hidden="true">
+        ⏳
+      </div>
+
+      <!-- Meta -->
+      <div class="flex-1 min-w-0">
+        <h1 id="skill-name" class="text-2xl font-bold mb-2">Loading…</h1>
+        <span id="skill-category" class="inline-block text-sm px-3 py-1 rounded-full font-medium bg-gray-100 text-gray-600 mb-3">—</span>
+        <div id="skill-meta" class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 dark:text-gray-400"></div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p id="skill-description" class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6 max-w-2xl"></p>
+
+    <!-- Tags -->
+    <div id="skill-tags" class="flex flex-wrap gap-2 mb-8"></div>
+
+    <!-- Install panel -->
+    <div id="install-action" class="install-panel mb-10" data-skill-id="" data-skill-file="">
+      <h2 class="font-semibold text-lg mb-1">Install this skill</h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        Download the <code class="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">.skill</code> file, then drag it into the Claude desktop app to install.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a id="download-btn"
+          href="#"
+          download
+          class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-3 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+          aria-label="Download skill file">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/>
+          </svg>
+          Download .skill file
+        </a>
+        <div class="text-sm text-gray-500 dark:text-gray-400 leading-snug">
+          <p class="font-medium text-gray-700 dark:text-gray-300">After downloading:</p>
+          <p>Drag the <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-xs">.skill</code> file into the Claude desktop app to install.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- README -->
+    <section aria-labelledby="readme-heading" class="mb-10">
+      <h2 id="readme-heading" class="text-xl font-bold mb-4">Documentation</h2>
+      <div id="readme-content" class="prose">
+        <!-- Filled by skill-detail.js -->
+        <div class="skeleton h-4 w-full mb-3 rounded"></div>
+        <div class="skeleton h-4 w-5/6 mb-3 rounded"></div>
+        <div class="skeleton h-4 w-4/5 mb-3 rounded"></div>
+      </div>
+    </section>
+
+    <!-- Report issue -->
+    <div class="border-t border-gray-100 dark:border-gray-800 pt-6 pb-4">
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        Found a bug or issue?
+        <a id="report-issue-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-indigo-600 dark:text-indigo-400 hover:underline ml-1">
+          Report it on GitHub →
+        </a>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="px-6 py-6 text-sm text-gray-400 dark:text-gray-600 border-t border-gray-100 dark:border-gray-800 text-center">
+    <a href="index.html" class="text-indigo-600 dark:text-indigo-400 hover:underline">← Back to Marketplace</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/skill-detail.js"></script>
+</body>
+</html>

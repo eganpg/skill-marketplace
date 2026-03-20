@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Marketplace</title>
+  <meta name="description" content="Discover, download, and install Claude skills built by your team." />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          colors: { brand: '#4f46e5' }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="min-h-screen">
+
+  <!-- ===================== LAYOUT WRAPPER ===================== -->
+  <div class="flex min-h-screen">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar hidden md:flex flex-col w-64 shrink-0 p-6 gap-6" aria-label="Filter skills">
+      <!-- Logo -->
+      <a href="index.html" class="block">
+        <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-8 w-auto" />
+      </a>
+
+      <!-- Nav links -->
+      <nav class="flex flex-col gap-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-white/10 text-white">
+          <span aria-hidden="true">🏠</span> Browse Skills
+        </a>
+        <a href="submit.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
+          <span aria-hidden="true">➕</span> Submit a Skill
+        </a>
+      </nav>
+
+      <hr class="border-white/10" />
+
+      <!-- Category filters -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3">Categories</p>
+        <div id="category-filters" class="flex flex-col gap-1"></div>
+      </div>
+
+      <hr class="border-white/10" />
+
+      <!-- Sort -->
+      <div>
+        <label for="sort-select" class="text-xs font-semibold uppercase tracking-wider text-indigo-300 block mb-2">Sort by</label>
+        <select id="sort-select" class="w-full bg-white/10 text-white text-sm rounded-lg px-3 py-2 border border-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          <option value="newest">Newest</option>
+          <option value="popular">Most Popular</option>
+          <option value="alpha">A → Z</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- Top bar (mobile only) -->
+      <header class="md:hidden flex items-center justify-between px-4 py-3 bg-indigo-900 shadow-sm">
+        <a href="index.html">
+          <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-7 w-auto" />
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="submit.html" class="text-white text-sm font-medium hover:underline">Submit</a>
+          <button id="filter-toggle-btn"
+            class="flex items-center gap-1.5 text-sm text-white border border-white/30 rounded-lg px-3 py-1.5 hover:bg-white/10 transition-colors"
+            aria-label="Open filter panel"
+            aria-expanded="false"
+            aria-controls="filter-drawer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M7 8h10M11 12h2"/>
+            </svg>
+            Filters
+          </button>
+        </div>
+      </header>
+
+      <main class="flex-1 px-6 py-8 max-w-7xl w-full mx-auto" id="main-content">
+
+        <!-- Hero -->
+        <section class="mb-10" aria-labelledby="hero-heading">
+          <h1 id="hero-heading" class="text-3xl font-bold mb-2">Find your next Claude skill</h1>
+          <p class="text-gray-500 dark:text-gray-400 text-lg mb-6">Browse and install automations built by your team — one download away.</p>
+
+          <div class="relative max-w-xl">
+            <label for="search-input" class="sr-only">Search skills</label>
+            <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none" aria-hidden="true">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+              </svg>
+            </div>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search skills, authors, tags…"
+              autocomplete="off"
+              class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-base shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-shadow"
+              aria-label="Search skills"
+            />
+          </div>
+        </section>
+
+        <!-- Featured Skills -->
+        <section id="featured-section" class="mb-10" aria-labelledby="featured-heading">
+          <h2 id="featured-heading" class="text-xl font-bold mb-4">⭐ Featured Skills</h2>
+          <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Catalog -->
+        <section aria-labelledby="catalog-heading">
+          <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+            <h2 id="catalog-heading" class="text-xl font-bold">All Skills</h2>
+            <span id="result-count" class="text-sm text-gray-500 dark:text-gray-400" aria-live="polite" aria-atomic="true"></span>
+          </div>
+          <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" role="list" aria-label="Skill catalog"></div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="px-6 py-6 text-sm text-gray-400 dark:text-gray-600 border-t border-gray-100 dark:border-gray-800 flex flex-wrap items-center justify-between gap-4">
+        <span>Skill Marketplace — internal tool</span>
+        <a href="submit.html" class="text-indigo-600 dark:text-indigo-400 hover:underline">Submit a Skill</a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ===================== MOBILE FILTER DRAWER ===================== -->
+  <div id="filter-drawer" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Filter panel">
+    <div id="filter-drawer__backdrop" tabindex="-1"></div>
+    <div id="filter-drawer__panel" tabindex="-1">
+      <div class="flex items-center justify-between mb-6">
+        <p class="font-semibold text-white">Filters</p>
+        <button id="filter-drawer__close" class="text-white/70 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded" aria-label="Close filter panel">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-3">Categories</p>
+      <div id="drawer-category-filters" class="flex flex-col gap-1 mb-6"></div>
+
+      <p class="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-2">Sort by</p>
+      <p class="text-sm text-indigo-200">Use the sort dropdown on the main page.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/marketplace.js"></script>
+</body>
+</html>
