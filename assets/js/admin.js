@@ -90,7 +90,7 @@
           </div>
           ${canBuild ? `
             <a href="${buildAgentIssueUrl(item)}" target="_blank" rel="noopener noreferrer"
-               class="shrink-0 inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+               class="start-building-btn shrink-0 inline-flex items-center gap-2 bg-[#00a187] hover:bg-[#007d68] text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
               🤖 Start Building
             </a>` : ''}
           ${item.status === 'done' && item.skillId ? `
@@ -98,6 +98,15 @@
                class="shrink-0 text-sm text-[#00a187] hover:underline font-medium">
               View in marketplace →
             </a>` : ''}
+        </div>
+
+        <div class="build-reminder hidden bg-amber-50 border border-amber-300 rounded-lg px-4 py-3 text-sm text-amber-900" role="alert">
+          <p class="font-semibold mb-1">📋 Issue opened — now update the roadmap</p>
+          <p class="mb-2">Edit <code class="bg-amber-100 px-1 rounded">roadmap/roadmap.json</code> for item <code class="bg-amber-100 px-1 rounded">${escapeHtml(item.id)}</code>:</p>
+          <ol class="list-decimal list-inside space-y-1 text-amber-800">
+            <li>Set <code class="bg-amber-100 px-1 rounded">"status"</code> to <code class="bg-amber-100 px-1 rounded">"building"</code></li>
+            <li>Set <code class="bg-amber-100 px-1 rounded">"githubIssue"</code> to the URL of the issue you just created</li>
+          </ol>
         </div>
 
         <p class="text-sm text-gray-600 leading-relaxed">${escapeHtml(item.description)}</p>
@@ -159,6 +168,15 @@
     });
 
     container.innerHTML = html || '<p class="text-gray-400 italic">No roadmap items found.</p>';
+
+    // Show reminder banner when "Start Building" is clicked
+    container.querySelectorAll('.start-building-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('article');
+        card?.querySelector('.build-reminder')?.classList.remove('hidden');
+        card?.querySelector('.build-reminder')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
   }
 
   async function init() {
