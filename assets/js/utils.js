@@ -2,7 +2,7 @@
   'use strict';
 
   // Central config — update when repo moves
-  const REPO_SLUG = 'your-org/skill-marketplace';
+  const REPO_SLUG = 'eganpg/skill-marketplace';
   const MANIFEST_PATH = 'skills/manifest.json';
 
   let _manifestCache = null;
