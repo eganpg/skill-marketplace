@@ -9,25 +9,15 @@
   --color-brand: #00a187;
   --color-brand-dark: #007d68;
   --color-brand-light: #33b59f;
-  --color-sidebar-bg: #00231e;
-  --color-sidebar-text: #ccf0ec;
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-border: #e5e7eb;
+  --color-sidebar-text: #111827;
   --color-card-bg: #ffffff;
   --color-card-border: #e5e7eb;
   --color-body-bg: #f9fafb;
   --color-text-primary: #111827;
   --color-text-muted: #6b7280;
   --transition-default: 200ms ease;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-card-bg: #1f2937;
-    --color-card-border: #374151;
-    --color-body-bg: #111827;
-    --color-text-primary: #f9fafb;
-    --color-text-muted: #9ca3af;
-    --color-sidebar-bg: #001a16;
-  }
 }
 
 /* ---------- Base ---------- */
@@ -58,6 +48,7 @@ body {
 /* Only the vertical aside sidebar gets full height */
 aside.sidebar {
   min-height: 100vh;
+  border-right: 1px solid var(--color-sidebar-border);
 }
 
 .sidebar a,
@@ -119,8 +110,9 @@ aside.sidebar {
   position: relative;
   width: 280px;
   max-width: 85vw;
-  background-color: var(--color-sidebar-bg);
-  color: var(--color-sidebar-text);
+  background-color: #ffffff;
+  color: #111827;
+  border-right: 1px solid #e5e7eb;
   height: 100%;
   overflow-y: auto;
   transform: translateX(-100%);
@@ -184,7 +176,7 @@ aside.sidebar {
 }
 
 .prose pre {
-  background: #00231e;
+  background: #1a2e2b;
   color: #ccf0ec;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;

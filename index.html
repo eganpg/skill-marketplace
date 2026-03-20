@@ -36,10 +36,10 @@
 
       <!-- Nav links -->
       <nav class="flex flex-col gap-1">
-        <a href="index.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-white/10 text-white">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium bg-teal-50 text-[#00a187] font-semibold">
           <span aria-hidden="true">🏠</span> Browse Skills
         </a>
-        <a href="submit.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
+        <a href="submit.html" class="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-teal-50 hover:text-[#00a187] transition-colors">
           <span aria-hidden="true">➕</span> Submit a Skill
         </a>
       </nav>
@@ -48,7 +48,7 @@
 
       <!-- Category filters -->
       <div>
-        <p class="text-xs font-semibold uppercase tracking-wider text-teal-300 mb-3">Categories</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Categories</p>
         <div id="category-filters" class="flex flex-col gap-1"></div>
       </div>
 
@@ -56,8 +56,8 @@
 
       <!-- Sort -->
       <div>
-        <label for="sort-select" class="text-xs font-semibold uppercase tracking-wider text-teal-300 block mb-2">Sort by</label>
-        <select id="sort-select" class="w-full bg-white/10 text-white text-sm rounded-lg px-3 py-2 border border-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+        <label for="sort-select" class="text-xs font-semibold uppercase tracking-wider text-gray-400 block mb-2">Sort by</label>
+        <select id="sort-select" class="w-full bg-white text-gray-700 text-sm rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
           <option value="newest">Newest</option>
           <option value="popular">Most Popular</option>
           <option value="alpha">A → Z</option>
@@ -69,14 +69,14 @@
     <div class="flex-1 flex flex-col min-w-0">
 
       <!-- Top bar (mobile only) -->
-      <header class="md:hidden flex items-center justify-between px-4 py-3 bg-[#00231e] shadow-sm">
+      <header class="md:hidden flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200 shadow-sm">
         <a href="index.html">
           <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-7 w-auto" />
         </a>
         <div class="flex items-center gap-3">
-          <a href="submit.html" class="text-white text-sm font-medium hover:underline">Submit</a>
+          <a href="submit.html" class="text-gray-700 text-sm font-medium hover:underline">Submit</a>
           <button id="filter-toggle-btn"
-            class="flex items-center gap-1.5 text-sm text-white border border-white/30 rounded-lg px-3 py-1.5 hover:bg-white/10 transition-colors"
+            class="flex items-center gap-1.5 text-sm text-gray-700 border border-gray-300 rounded-full px-3 py-1.5 hover:bg-white/10 transition-colors"
             aria-label="Open filter panel"
             aria-expanded="false"
             aria-controls="filter-drawer">
@@ -143,19 +143,19 @@
     <div id="filter-drawer__backdrop" tabindex="-1"></div>
     <div id="filter-drawer__panel" tabindex="-1">
       <div class="flex items-center justify-between mb-6">
-        <p class="font-semibold text-white">Filters</p>
-        <button id="filter-drawer__close" class="text-white/70 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded" aria-label="Close filter panel">
+        <p class="font-semibold text-gray-900">Filters</p>
+        <button id="filter-drawer__close" class="text-gray-400 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded" aria-label="Close filter panel">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
-      <p class="text-xs font-semibold uppercase tracking-wider text-teal-300 mb-3">Categories</p>
+      <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Categories</p>
       <div id="drawer-category-filters" class="flex flex-col gap-1 mb-6"></div>
 
-      <p class="text-xs font-semibold uppercase tracking-wider text-teal-300 mb-2">Sort by</p>
-      <p class="text-sm text-teal-200">Use the sort dropdown on the main page.</p>
+      <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Sort by</p>
+      <p class="text-sm text-gray-500">Use the sort dropdown on the main page.</p>
     </div>
   </div>
 
