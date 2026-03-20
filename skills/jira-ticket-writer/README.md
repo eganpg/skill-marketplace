@@ -1,4 +1,4 @@
-# Jira Ticket Writer
+# PM Ticket Writer
 
 **Version:** 1.0.0
 **Author:** Pete Egan

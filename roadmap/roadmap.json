@@ -1,0 +1,72 @@
+{
+  "lastUpdated": "2026-03-20",
+  "version": "1",
+  "items": [
+    {
+      "id": "email-thread-summarizer",
+      "title": "Email Thread Summarizer",
+      "description": "Summarize long email threads into key decisions, action items, and who said what — without reading every reply.",
+      "useCase": "I spend 20-30 minutes every morning catching up on email threads from the day before. I need a way to get the key information fast before standup.",
+      "templates": "No templates yet — typical threads are in Gmail and Outlook formats.",
+      "submitter": "Sarah K.",
+      "status": "building",
+      "votes": 14,
+      "submittedAt": "2026-02-10",
+      "updatedAt": "2026-03-12",
+      "githubIssue": "https://github.com/eganpg/skill-marketplace/issues/3"
+    },
+    {
+      "id": "slide-outline-generator",
+      "title": "Slide Deck Outline Generator",
+      "description": "Turn a project brief or set of bullet points into a structured slide deck outline with suggested titles, talking points per slide, and a logical flow.",
+      "useCase": "Every time I need to present to leadership I start from scratch on the outline. It takes me 2 hours before I even open PowerPoint.",
+      "templates": "Our standard executive deck uses: Title → Problem → Current State → Proposed Solution → Timeline → Ask.",
+      "submitter": "Marcus T.",
+      "status": "approved",
+      "votes": 9,
+      "submittedAt": "2026-02-18",
+      "updatedAt": "2026-03-05",
+      "githubIssue": null
+    },
+    {
+      "id": "standup-writer",
+      "title": "Daily Standup Writer",
+      "description": "Given a list of tasks completed, in-progress, and blocked, write a polished standup update in the team's preferred format.",
+      "useCase": "Our team does written standups in Slack. I always forget to write mine before the deadline and end up rushing it.",
+      "templates": "Format: Yesterday: [bullets] | Today: [bullets] | Blockers: [bullets or 'None']",
+      "submitter": "Pete Egan",
+      "status": "idea",
+      "votes": 7,
+      "submittedAt": "2026-03-01",
+      "updatedAt": "2026-03-01",
+      "githubIssue": null
+    },
+    {
+      "id": "retro-facilitator",
+      "title": "Sprint Retro Facilitator",
+      "description": "Paste in retro notes from the team and get back a structured summary: what went well, what didn't, key themes, and suggested action items.",
+      "useCase": "I facilitate our sprint retros and spend an hour after each one synthesizing the sticky notes into a summary doc for the team.",
+      "templates": "We use a Start / Stop / Continue format. Notes come out of MURAL as a text export.",
+      "submitter": "Alicia M.",
+      "status": "idea",
+      "votes": 5,
+      "submittedAt": "2026-03-08",
+      "updatedAt": "2026-03-08",
+      "githubIssue": null
+    },
+    {
+      "id": "meeting-notes-formatter",
+      "title": "Meeting Notes Formatter",
+      "description": "Transforms raw meeting transcripts or bullet-point notes into a structured summary with decisions, action items, and owners.",
+      "useCase": "Needed a consistent format for meeting notes that everyone on the team could follow and quickly scan.",
+      "templates": "No templates provided — built from common patterns across multiple teams.",
+      "submitter": "Pete Egan",
+      "status": "done",
+      "votes": 22,
+      "submittedAt": "2026-01-20",
+      "updatedAt": "2026-03-20",
+      "githubIssue": "https://github.com/eganpg/skill-marketplace/issues/1",
+      "skillId": "meeting-notes-formatter"
+    }
+  ]
+}

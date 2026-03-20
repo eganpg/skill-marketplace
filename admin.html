@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Skill Roadmap</title>
+  <meta name="description" content="Admin view for managing the skill roadmap and triggering skill builds." />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: '#00a187' } } } };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="min-h-screen bg-gray-50">
+
+  <!-- ===================== TOP NAV ===================== -->
+  <header class="sidebar px-6 py-4 flex items-center justify-between border-b border-gray-200" role="banner">
+    <a href="index.html" class="block">
+      <img src="assets/img/logo.svg" alt="Skill Marketplace" class="h-8 w-auto" />
+    </a>
+    <nav class="flex items-center gap-4" aria-label="Site navigation">
+      <a href="index.html" class="text-gray-600 hover:text-[#00a187] text-sm transition-colors">Browse Skills</a>
+      <a href="roadmap.html" class="text-gray-600 hover:text-[#00a187] text-sm transition-colors">Roadmap</a>
+      <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full">Admin View</span>
+    </nav>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="max-w-4xl mx-auto px-6 py-10">
+
+    <!-- Page header -->
+    <div class="mb-8">
+      <div class="flex items-center gap-3 mb-2">
+        <h1 class="text-3xl font-bold">Roadmap Admin</h1>
+        <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-1 rounded-full">Pete only</span>
+      </div>
+      <p class="text-gray-500 text-lg">Review skill ideas, start builds, and manage roadmap status.</p>
+    </div>
+
+    <!-- How it works -->
+    <div class="bg-white border border-gray-200 rounded-xl p-5 mb-8">
+      <h2 class="font-semibold mb-3 text-sm uppercase tracking-wide text-gray-400">How the workflow works</h2>
+      <ol class="space-y-2 text-sm text-gray-600">
+        <li class="flex gap-3"><span class="font-bold text-[#00a187] shrink-0">1.</span> Review ideas below. When one is ready to build, click <strong>"Start Building"</strong>.</li>
+        <li class="flex gap-3"><span class="font-bold text-[#00a187] shrink-0">2.</span> A pre-filled GitHub Issue opens with all the context Claude needs to build the skill. Submit it.</li>
+        <li class="flex gap-3"><span class="font-bold text-[#00a187] shrink-0">3.</span> Use Claude (with the issue context) to generate the <code class="bg-gray-100 px-1 rounded">.skill</code> file and README.</li>
+        <li class="flex gap-3"><span class="font-bold text-[#00a187] shrink-0">4.</span> Open a PR to add the skill to the marketplace. Update <code class="bg-gray-100 px-1 rounded">roadmap.json</code> status to <code class="bg-gray-100 px-1 rounded">done</code>.</li>
+      </ol>
+    </div>
+
+    <!-- Roadmap items -->
+    <div id="admin-items"></div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="px-6 py-6 text-sm text-gray-400 border-t border-gray-100 text-center mt-10">
+    <a href="roadmap.html" class="text-[#00a187] hover:underline">← Back to Roadmap</a>
+  </footer>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
