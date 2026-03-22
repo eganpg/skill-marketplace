@@ -114,7 +114,7 @@
       "authorEmail": "eganpg@gmail.com",
       "tags": ["program-manager", "qasp", "contracts", "reporting", "government"],
       "category": "Document Processing",
-      "file": "skills/qasp-report-generator/qasp-report-generator.skill",
+      "file": "skills/qasp-report-generator/qasp-summary.skill",
       "icon": null,
       "readme": "skills/qasp-report-generator/README.md",
       "downloads": 0,
