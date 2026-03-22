@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20",
+  "lastUpdated": "2026-03-22",
   "version": "1",
   "items": [
     {
@@ -67,6 +67,20 @@
       "submittedAt": "2026-03-15",
       "updatedAt": "2026-03-20",
       "githubIssue": null
+    },
+    {
+      "id": "qasp-report-generator",
+      "title": "QASP Report Generator",
+      "description": "Generates a QASP submission based on delivery reports. Includes reference template and QA standards.",
+      "useCase": "Program managers need a consistent, standards-aligned QASP report to document contractor performance against quality assurance surveillance plans.",
+      "templates": "Includes readme.md, reference template, and QA standards.",
+      "submitter": "Pete Egan",
+      "status": "approved",
+      "type": "ready",
+      "votes": 0,
+      "submittedAt": "2026-03-22",
+      "updatedAt": "2026-03-22",
+      "githubIssue": "https://github.com/eganpg/skill-marketplace/issues/2"
     },
     {
       "id": "va-product-outline",
