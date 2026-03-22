@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20",
+  "lastUpdated": "2026-03-22",
   "version": "1",
   "skills": [
     {
@@ -104,6 +104,23 @@
       "publishedAt": "2026-03-20",
       "updatedAt": "2026-03-20",
       "featured": true
+    },
+    {
+      "id": "qasp-report-generator",
+      "name": "QASP Report Generator",
+      "description": "Generates a structured QASP submission based on contractor delivery reports. Includes a reference template and QA standards to produce consistent, ready-to-submit performance assessments.",
+      "version": "1.0.0",
+      "author": "Pete Egan",
+      "authorEmail": "eganpg@gmail.com",
+      "tags": ["program-manager", "qasp", "contracts", "reporting", "government"],
+      "category": "Document Processing",
+      "file": "skills/qasp-report-generator/qasp-report-generator.skill",
+      "icon": null,
+      "readme": "skills/qasp-report-generator/README.md",
+      "downloads": 0,
+      "publishedAt": "2026-03-22",
+      "updatedAt": "2026-03-22",
+      "featured": false
     }
   ]
 }

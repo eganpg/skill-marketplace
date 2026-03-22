@@ -75,12 +75,13 @@
       "useCase": "Program managers need a consistent, standards-aligned QASP report to document contractor performance against quality assurance surveillance plans.",
       "templates": "Includes readme.md, reference template, and QA standards.",
       "submitter": "Pete Egan",
-      "status": "approved",
+      "status": "done",
       "type": "ready",
       "votes": 0,
       "submittedAt": "2026-03-22",
       "updatedAt": "2026-03-22",
-      "githubIssue": "https://github.com/eganpg/skill-marketplace/issues/2"
+      "githubIssue": "https://github.com/eganpg/skill-marketplace/issues/2",
+      "skillId": "qasp-report-generator"
     },
     {
       "id": "va-product-outline",
