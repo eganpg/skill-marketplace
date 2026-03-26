@@ -1,60 +1,108 @@
-# Skill Marketplace
+# Oddball AI Resources
 
-Internal company marketplace for discovering, downloading, and installing Claude skills built by your team.
-
-## Live Site
-
-Served via GitHub Pages at your org's Pages URL (configure in repo Settings → Pages → Source: `main` / `root`).
+A curated collection of AI skills, prompts, agents, and resources for Claude and GitHub Copilot — plus a live web marketplace for browsing and installing skills built by your team.
 
 ---
 
-## Local Development
+## What's Inside
 
-No build step required. Serve the repo root with any static file server:
+**Skill Marketplace** - A browsable web catalog for discovering, downloading, and installing Claude skills. Filter by category, read docs, and install with one click. Live at [GitHub Pages](#github-pages-setup).
 
-```bash
-# Python
-python3 -m http.server 8080
+**Prompts** - Reusable system prompts, task prompts, and multi-step prompt chains for Claude and Copilot. Drop them into your workflow or adapt them to your needs.
 
-# Node (npx)
-npx serve .
+**Skills** - Claude Code skills (SKILL.md format), CLAUDE.md configurations, context engineering patterns, and Copilot workspace configs. Practical setups that make your AI tools more effective.
 
-# VS Code: use the Live Server extension
-```
+**Agents** - Sub-agent definitions, multi-step workflow configs, MCP server setups for Claude, and custom agent definitions for Copilot. Patterns for building AI that does more than answer questions.
 
-Then open `http://localhost:8080`.
+**Cross-Tool** - Tool-agnostic patterns, OpenSkills that port across Claude and Copilot, shared prompting and context techniques, and migration guides for moving between tools.
+
+**Guides** - Deep-dive getting started guides and setup walkthroughs for Claude Code and Copilot. Instructional content to go from zero to productive.
+
+**Projects** - Full working example projects that demonstrate how these pieces fit together. Each project is self-contained with its own setup instructions and documentation.
+
+---
+
+## Quick Start
+
+| I want to... | Go to |
+|---|---|
+| Browse and install skills | [Marketplace site](https://eganpg.github.io/skill-marketplace/) |
+| Find a reusable prompt | [`/engineering/prompts`](./engineering/prompts/) |
+| Set up Claude Code skills or CLAUDE.md | [`/engineering/skills/claude`](./engineering/skills/claude/) |
+| Configure Copilot for my workspace | [`/engineering/skills/copilot`](./engineering/skills/copilot/) |
+| Build an agent workflow | [`/engineering/agents`](./engineering/agents/) |
+| Use a pattern that works across tools | [`/engineering/cross-tool`](./engineering/cross-tool/) |
+| Find an OpenSkill | [`/engineering/cross-tool/openskills`](./engineering/cross-tool/openskills/) |
+| Get started with Claude Code | [`/engineering/guides/claude-code`](./engineering/guides/claude-code/) |
+| Get started with Copilot | [`/engineering/guides/copilot`](./engineering/guides/copilot/) |
+| See a full working example | [`/projects`](./projects/) |
+
+Each item includes its own README with purpose, usage instructions, compatibility info, and examples.
+
+---
+
+## Status Labels
+
+Every resource item carries a maturity label so you know what to expect:
+
+| Label | What it means |
+|---|---|
+| ![Production-Ready](https://img.shields.io/badge/status-production--ready-brightgreen) | Tested and reliable for real use |
+| ![Stable](https://img.shields.io/badge/status-stable-green) | Works well, minor edge cases possible |
+| ![Beta](https://img.shields.io/badge/status-beta-yellow) | Functional, still being refined |
+| ![Experimental](https://img.shields.io/badge/status-experimental-orange) | Proof of concept, expect rough edges |
+| ![Community](https://img.shields.io/badge/status-community-blue) | Community contributed, reviewed but not deeply tested |
+
+See [STATUS.md](./STATUS.md) for full criteria.
 
 ---
 
 ## Repository Structure
 
 ```
-skill-marketplace/
-├── index.html                  # Main marketplace page
-├── skill.html                  # Individual skill detail page
-├── submit.html                 # Skill submission instructions + form
-├── assets/
-│   ├── css/styles.css          # Custom styles (supplements Tailwind CDN)
-│   ├── js/
-│   │   ├── utils.js            # Shared: fetchManifest, debounce, helpers
-│   │   ├── marketplace.js      # Catalog: search, filter, render
-│   │   ├── skill-detail.js     # Detail page logic + markdown rendering
-│   │   └── submit.js           # Submission form logic
-│   └── img/logo.svg            # Marketplace logo
+oddball-ai-resources/
+├── index.html                        # Marketplace catalog (GitHub Pages)
+├── skill.html                        # Skill detail page
+├── submit.html                       # Skill submission page
+├── roadmap.html                      # Skill pipeline / roadmap
+├── admin.html                        # Admin review tools
+├── assets/                           # Marketplace CSS, JS, logo
 ├── skills/
-│   ├── manifest.json           # Master index of all published skills
+│   ├── manifest.json                 # Master index of all published marketplace skills
 │   └── [skill-name]/
-│       ├── [skill-name].skill  # Installable .skill file (zip archive)
-│       └── README.md           # Skill documentation
-├── submissions/                # Staging area for pending PRs (not served)
+│       ├── [skill-name].skill        # Installable .skill file (zip archive)
+│       └── README.md                 # Skill documentation
+├── roadmap/roadmap.json              # Roadmap pipeline data
+├── engineering/
+│   ├── skills/
+│   │   ├── claude/                   # SKILL.md skills, CLAUDE.md configs, context patterns
+│   │   └── copilot/                  # Extensions, workspace configs
+│   ├── prompts/
+│   │   ├── claude/                   # System prompts, task prompts, prompt chains
+│   │   └── copilot/                  # Instruction files, chat prompt patterns
+│   ├── agents/
+│   │   ├── claude/                   # Sub-agents, workflows, MCP configs
+│   │   └── copilot/                  # Custom agents, agent mode configs
+│   ├── cross-tool/
+│   │   ├── openskills/               # Tool-agnostic skill definitions
+│   │   ├── shared-patterns/          # Universal prompt and context patterns
+│   │   └── migration-guides/         # Translating setups between Claude and Copilot
+│   ├── guides/
+│   │   ├── claude-code/              # Getting started, CLAUDE.md, skills, MCP, etc.
+│   │   └── copilot/                  # Getting started, instructions, agent mode, etc.
+│   └── templates/                    # README and OpenSkill templates for contributors
+├── projects/                         # Full working example projects
+├── docs/                             # Marketplace dev docs and user flows
+├── submissions/                      # Staging area for pending skill PRs
 └── .github/
+    ├── CODEOWNERS
     └── PULL_REQUEST_TEMPLATE/
         └── skill_submission.md
 ```
 
 ---
 
-## Adding a Skill
+## Marketplace: Adding a Skill
 
 ### Option A — Pull Request (preferred)
 
@@ -72,9 +120,9 @@ Use the form on the [submit page](submit.html). A pre-filled GitHub Issue will o
 
 ---
 
-## Manifest Schema
+## Marketplace: Manifest Schema
 
-`skills/manifest.json` is the single source of truth for all published skills.
+`skills/manifest.json` is the single source of truth for all published marketplace skills.
 
 ```json
 {
@@ -115,7 +163,7 @@ Use the form on the [submit page](submit.html). A pre-filled GitHub Issue will o
 
 ---
 
-## Skill File Format
+## Marketplace: Skill File Format
 
 A `.skill` file is a standard zip archive containing a `SKILL.md` at the root:
 
@@ -135,7 +183,7 @@ rm -rf tmpdir
 
 ---
 
-## Admin Review Checklist
+## Marketplace: Admin Review Checklist
 
 When reviewing a skill submission PR:
 
@@ -148,8 +196,47 @@ When reviewing a skill submission PR:
 
 ---
 
+## Local Development (Marketplace)
+
+No build step required. Serve the repo root with any static file server:
+
+```bash
+# Python
+python3 -m http.server 8080
+
+# Node (npx)
+npx serve .
+
+# VS Code: use the Live Server extension
+```
+
+Then open `http://localhost:8080`.
+
+---
+
 ## GitHub Pages Setup
 
 1. Go to repo **Settings → Pages**
 2. Source: Deploy from branch → `main` → `/ (root)`
 3. Save — the site deploys automatically on every merge to `main`
+
+---
+
+## Contributing
+
+Contributions are welcome. Whether it's a prompt that saved you hours, a CLAUDE.md config that works great for your team, or a Copilot setup that boosts productivity - we'd love to include it.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on:
+
+- How to structure your contribution
+- README requirements for new items
+- The PR review process
+- How status labels are assigned and promoted
+
+---
+
+## Tools Covered
+
+**[Claude](https://claude.ai)** by Anthropic - Claude Code, Claude API, claude.ai, CLAUDE.md configs, MCP integrations, sub-agents, and skills.
+
+**[GitHub Copilot](https://github.com/features/copilot)** - Copilot Chat, custom instructions, agent mode, extensions, and workspace configurations.
